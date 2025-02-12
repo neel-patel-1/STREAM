@@ -33,7 +33,11 @@ UC_FREQS=(800000 1600000 2400000)
 for uc_freq in ${UC_FREQS[@]}; do
 
   for freq in "${FREQS[@]}"; do
-    cat stream_c_${uc_freq}_${freq}MHz.txt | grep "Scale:" | awk '{print $2}'
+    copy_rate=$(grep "Copy:" stream_c_${uc_freq}_${freq}MHz.txt | awk '{print $2}')
+    scale_rate=$(grep "Scale:" stream_c_${uc_freq}_${freq}MHz.txt | awk '{print $2}')
+    add_rate=$(grep "Add:" stream_c_${uc_freq}_${freq}MHz.txt | awk '{print $2}')
+    triad_rate=$(grep "Triad:" stream_c_${uc_freq}_${freq}MHz.txt | awk '{print $2}')
+    echo "${copy_rate} ${scale_rate} ${add_rate} ${triad_rate}"
   done
   echo ""
 done
