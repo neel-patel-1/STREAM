@@ -28,7 +28,12 @@
 # Solution Validates: avg error less than 1.000000e-13 on all three arrays
 
 FREQS=(800 1600 2400)
+UC_FREQS=(800000 1600000 2400000)
 
-for freq in ${FREQS[@]}; do
-  grep -e Copy -e Scale -e Add -e Triad stream_c_${freq}MHz.txt | awk '{print $2}' | paste -sd' '  -
+for uc_freq in ${UC_FREQS[@]}; do
+
+  for freq in "${FREQS[@]}"; do
+    cat stream_c_${uc_freq}_${freq}MHz.txt | grep "Scale:" | awk '{print $2}'
+  done
+  echo ""
 done
