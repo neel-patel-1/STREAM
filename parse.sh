@@ -28,7 +28,7 @@
 # Solution Validates: avg error less than 1.000000e-13 on all three arrays
 
 FREQS=(800 1600 2400)
-UC_FREQS=(800000 1600000 2400000)
+UC_FREQS=(800000 1200000 1600000 2000000 2400000)
 
 for uc_freq in ${UC_FREQS[@]}; do
 
