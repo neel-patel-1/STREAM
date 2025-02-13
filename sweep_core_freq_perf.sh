@@ -10,7 +10,7 @@ for uc_freq in "${UC_FREQS[@]}"; do
   for freq in "${FREQS[@]}"; do
     sudo cpupower --cpu all frequency-set --freq ${freq}MHz
     sleep 1
-    make clean; make CFLAGS="-fopenmp -O3 -mavx512f -DSTREAM_ARRAY_SIZE=10000000 -g" ; export OMP_NUM_THREADS=52; taskset -c 0-52 ./stream_c.exe | tee stream_c_${uc_freq}_${freq}MHz.txt
+    make clean; make CFLAGS="-fopenmp -O3 -mavx512f -DSTREAM_ARRAY_SIZE=10000000 -g" ; export OMP_NUM_THREADS=10; taskset -c 0-10 ./stream_c.exe | tee stream_c_${uc_freq}_${freq}MHz.txt
   done
 done
 
